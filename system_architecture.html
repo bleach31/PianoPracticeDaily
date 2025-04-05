@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Piano Practice Daily &#8212; Piano Practice Daily  documentation</title>
+    <title>System Architecture &#8212; Piano Practice Daily  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
@@ -30,7 +30,8 @@
     <script src="_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Requirements" href="requirements.html" />
+    <link rel="next" title="Specifications" href="specifications.html" />
+    <link rel="prev" title="Requirements" href="requirements.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,16 +49,58 @@
 
           <div class="body" role="main">
             
-  <section id="piano-practice-daily">
-<h1>Piano Practice Daily<a class="headerlink" href="#piano-practice-daily" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Navigation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="system_architecture.html">System Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="specifications.html">Specifications</a></li>
-</ul>
-</div>
+  <section id="system-architecture">
+<span id="id1"></span><h1>System Architecture<a class="headerlink" href="#system-architecture" title="Link to this heading">¶</a></h1>
+<p id="id2">The following diagram illustrates the system architecture for Piano Practice Daily:</p>
+<h1 id="needuml-system_architecture-0">logical_architecture<a class="headerlink" href="#system-architecture" title="Link to this heading">¶</a></h1>
+<p class="plantuml">
+<a href="_images/plantuml-51c9cfbda7b52b1e728a0ab48e561b4837488e63.png"><img src="_images/plantuml-51c9cfbda7b52b1e728a0ab48e561b4837488e63.png" alt="&#64;startuml
+
+actor User
+package &quot;Piano Practice Daily System&quot; {
+    component &quot;Piano Detection Module&quot; as PianoDetection
+    component &quot;Audio Recording Module&quot; as AudioRecording
+    component &quot;Silence Processing Module&quot; as SilenceProcessing
+    component &quot;Storage Module&quot; as Storage
+    component &quot;Web Portal&quot; as WebPortal
+    component &quot;Notification Module&quot; as Notification
+    component &quot;Streaming Module (Optional)&quot; as Streaming
+}
+
+User --&gt; WebPortal : View Logs &amp; Playback
+User --&gt; Streaming : Listen in Real-time
+PianoDetection --&gt; AudioRecording : Trigger Recording
+AudioRecording --&gt; SilenceProcessing : Process Audio
+SilenceProcessing --&gt; Storage : Save Processed Audio
+Storage --&gt; WebPortal : Provide Audio Files
+WebPortal --&gt; Notification : Send Email Notifications
+&#64;enduml
+" style="width: 698.0px; height: 862.0px"/></a>
+</p>
+<h1 id="needuml-system_architecture-1">physical_architrecture<a class="headerlink" href="#system-architecture" title="Link to this heading">¶</a></h1>
+<p class="plantuml">
+<a href="_images/plantuml-33df72b17e8807c75b82e56bf988f9745a5d9dbc.png"><img src="_images/plantuml-33df72b17e8807c75b82e56bf988f9745a5d9dbc.png" alt="&#64;startuml
+
+actor Trainee
+actor User
+
+package &quot;Local Resource&quot; {
+    [Electronic Piano] as Piano
+    [Linux Device] as Linux
+}
+package &quot;Cloud Resource&quot; {
+    [Google Drive] as Cloud
+}
+
+Trainee --&gt; Piano : Plays Piano
+Piano --&gt; Linux : Audio Output (via USB or Line-In)
+Linux --&gt; Cloud : Upload Processed Audio
+Linux --&gt; Cloud : Get Processed Audio List
+User  --&gt; Linux : Web Portal Access (via Browser)
+User  --&gt; Cloud : Access Stored Files (direct access)
+&#64;enduml
+" style="width: 783.0px; height: 531.0px"/></a>
+</p>
 </section>
 
 
@@ -67,7 +110,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">Piano Practice Daily</a></h1>
+<h1 class="logo"><a href="index.html">Piano Practice Daily</a></h1>
 
 
 
@@ -87,17 +130,18 @@
 </search>
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Navigation</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="system_architecture.html">System Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="specifications.html">Specifications</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="requirements.html" title="next chapter">Requirements</a></li>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="requirements.html" title="previous chapter">Requirements</a></li>
+      <li>Next: <a href="specifications.html" title="next chapter">Specifications</a></li>
   </ul></li>
 </ul>
 </div>
@@ -121,7 +165,7 @@
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="_sources/index.rst.txt"
+      <a href="_sources/system_architecture.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
