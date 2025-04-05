@@ -25,6 +25,7 @@ Piano Practice Daily
     :id: REQ005
 
     The system shall remove silent periods longer than a specified threshold from the recording.
+    Silent periods are defined as described in :id:`REQ010`.
 
 .. req:: Log Practice Time
     :id: REQ006
@@ -41,6 +42,10 @@ Piano Practice Daily
 
     The system shall provide a website that displays daily practice logs and allows playback of past recordings.
 
+    - The web interface shall allow users to view a list of recorded sessions.
+    - Users shall be able to play back audio files directly from the web interface.
+    - The interface shall display metadata such as session date, duration, and any notes.
+
 .. req:: Real-time Streaming (Optional)
     :id: REQ009
 
@@ -51,55 +56,10 @@ Piano Practice Daily
 
     Silence is defined as a continuous period of no audio for more than a configurable number of seconds (e.g., 5 seconds).
 
-.. req:: Detect Piano Power On
-    :id: REQ011
-
-    Detects when the piano is powered on.
-
-.. req:: Detect Piano Power Off
-    :id: REQ012
-
-    Detects when the piano is powered off.
-
-.. req:: Start Audio Recording
-    :id: REQ013
-
-    Starts audio recording once the piano is turned on.
-
-.. req:: Save Audio File
-    :id: REQ014
-
-    Saves the recorded audio to a predefined storage.
-
-.. req:: Process and Trim Silence
-    :id: REQ015
-
-    Removes silent sections based on the silence threshold.
-
-.. req:: Log Session Data
-    :id: REQ016
-
-    Logs session metadata: start time, end time, duration.
-
-.. req:: Send Summary Email
-    :id: REQ017
-
-    Sends an email containing session information and the recording link.
-
-.. req:: Display Log via Web
-    :id: REQ018
-
-    Provides a web interface for reviewing daily logs and playback.
-
-    - The web interface shall allow users to view a list of recorded sessions.
-    - Users shall be able to play back audio files directly from the web interface.
-    - The interface shall display metadata such as session date, duration, and any notes.
-
 .. req:: Stream Audio in Real-time
     :id: REQ019
 
     Streams audio live during the session.
-
 
 System Architecture
 ===================
