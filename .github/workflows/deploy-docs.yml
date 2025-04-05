@@ -2,30 +2,25 @@ name: Deploy Sphinx Documentation
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    container:
-      image: danwos/sphinxneeds:latest
-
     steps:
-      # Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      # Build Sphinx documentation
-      - name: Build Sphinx documentation
-        run: |
-          cd docs
+    - name: Build documentation using sphinxneeds Docker image
+      run: |
+        docker run --rm \
+          -v ${{ github.workspace }}:/docs \
+          -w /docs/docs \
+          danwos/sphinxneeds:latest \
           sphinx-build -b html . _build
 
-      # Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/_build
-          publish_branch: pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/_build
