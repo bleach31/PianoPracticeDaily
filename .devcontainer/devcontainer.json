@@ -6,8 +6,12 @@
     "containerEnv": {
         "SHELL": "/bin/bash"
     },
-    "extensions": [
-        "ms-python.python",
-        "github.vscode-github-actions",
-    ]
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "github.vscode-github-actions"
+            ]
+        }
+    }
 }
