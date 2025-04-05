@@ -14,8 +14,9 @@ jobs:
     - name: Build documentation using sphinxneeds Docker image
       run: |
         docker run --rm \
-          -v ${{ github.workspace }}:/docs \
-          -w /docs/docs \
+          -v ${{ github.workspace }}:/repo \
+          -w /repo/docs \
+          --user $(id -u):$(id -g) \
           danwos/sphinxneeds:latest \
           sphinx-build -b html . _build
 
