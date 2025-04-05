@@ -1,6 +1,13 @@
 Piano Practice Daily
 ==========================
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Navigation
+
+   Requirements <#requirements>
+   System Architecture <#system-architecture>
+   Specifications <#specifications>
 
 Requirements
 ===================
