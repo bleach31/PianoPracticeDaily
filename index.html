@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Piano Practice Daily &#8212; Piano Practice Daily  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/modern.css?v=803738c0" />
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="_static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="_static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="piano-practice-daily">
+<h1>Piano Practice Daily<a class="headerlink" href="#piano-practice-daily" title="Link to this heading">¶</a></h1>
+<div class="need_container docutils container" id="SNCB-3d048235">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ001">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Detect Piano Start</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ001" title="REQ001">REQ001</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The system shall detect when the electronic piano is turned on.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-f929b5b4">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ002">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Detect Piano Stop</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ002" title="REQ002">REQ002</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The system shall detect when the electronic piano is turned off.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-77c41a5c">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ003">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Record Audio</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ003" title="REQ003">REQ003</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The system shall record audio during the practice session.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-b46ba842">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ004">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Store Audio on Storage</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ004" title="REQ004">REQ004</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The system shall store the recorded audio either in Google Drive or NAS or Cloud.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-078501f7">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ005">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Remove Silence</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ005" title="REQ005">REQ005</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The system shall remove silent periods longer than a specified threshold from the recording.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-ed23124a">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ006">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Log Practice Time</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ006" title="REQ006">REQ006</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The system shall log the session start time, stop time, and total duration.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-78179ee8">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ007">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Send Email Notification</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ007" title="REQ007">REQ007</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The system shall send an email with session information, including start time, stop time, total duration, and a link to the processed audio.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-cfad84e3">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ008">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Web Portal for History</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ008" title="REQ008">REQ008</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The system shall provide a website that displays daily practice logs and allows playback of past recordings.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-55048c94">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ009">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Real-time Streaming (Optional)</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ009" title="REQ009">REQ009</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The system may support real-time streaming of the piano session.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-f0ff4b40">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ010">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Silence Threshold</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ010" title="REQ010">REQ010</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Silence is defined as a continuous period of no audio for more than a configurable number of seconds (e.g., 5 seconds).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-34de6570">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ011">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Detect Piano Power On</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ011" title="REQ011">REQ011</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Detects when the piano is powered on.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-f1a89bf5">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ012">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Detect Piano Power Off</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ012" title="REQ012">REQ012</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Detects when the piano is powered off.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-e151b946">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ013">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Start Audio Recording</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ013" title="REQ013">REQ013</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Starts audio recording once the piano is turned on.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-78419738">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ014">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Save Audio File</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ014" title="REQ014">REQ014</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Saves the recorded audio to a predefined storage.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-6990041b">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ015">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Process and Trim Silence</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ015" title="REQ015">REQ015</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Removes silent sections based on the silence threshold.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-0e1231eb">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ016">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Log Session Data</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ016" title="REQ016">REQ016</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Logs session metadata: start time, end time, duration.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-fa6ebc80">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ017">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Send Summary Email</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ017" title="REQ017">REQ017</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Sends an email containing session information and the recording link.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-14eddd6c">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ018">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Display Log via Web</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ018" title="REQ018">REQ018</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Provides a web interface for reviewing daily logs and playback.</p>
+<ul class="simple">
+<li><p>The web interface shall allow users to view a list of recorded sessions.</p></li>
+<li><p>Users shall be able to play back audio files directly from the web interface.</p></li>
+<li><p>The interface shall display metadata such as session date, duration, and any notes.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-fb2c8d97">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ019">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Stream Audio in Real-time</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ019" title="REQ019">REQ019</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span></span></span></div>
+<div class="line"><span></span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Streams audio live during the session.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="system-architecture">
+<h1>System Architecture<a class="headerlink" href="#system-architecture" title="Link to this heading">¶</a></h1>
+<p>The following diagram illustrates the system architecture for Piano Practice Daily:</p>
+<h1 id="needuml-index-0">logical_architecture<a class="headerlink" href="#system-architecture" title="Link to this heading">¶</a></h1>
+<p class="plantuml">
+<a href="_images/plantuml-51c9cfbda7b52b1e728a0ab48e561b4837488e63.png"><img src="_images/plantuml-51c9cfbda7b52b1e728a0ab48e561b4837488e63.png" alt="&#64;startuml
+
+actor User
+package &quot;Piano Practice Daily System&quot; {
+    component &quot;Piano Detection Module&quot; as PianoDetection
+    component &quot;Audio Recording Module&quot; as AudioRecording
+    component &quot;Silence Processing Module&quot; as SilenceProcessing
+    component &quot;Storage Module&quot; as Storage
+    component &quot;Web Portal&quot; as WebPortal
+    component &quot;Notification Module&quot; as Notification
+    component &quot;Streaming Module (Optional)&quot; as Streaming
+}
+
+User --&gt; WebPortal : View Logs &amp; Playback
+User --&gt; Streaming : Listen in Real-time
+PianoDetection --&gt; AudioRecording : Trigger Recording
+AudioRecording --&gt; SilenceProcessing : Process Audio
+SilenceProcessing --&gt; Storage : Save Processed Audio
+Storage --&gt; WebPortal : Provide Audio Files
+WebPortal --&gt; Notification : Send Email Notifications
+&#64;enduml
+" style="width: 698.0px; height: 862.0px"/></a>
+</p>
+<h1 id="needuml-index-1">physical_architrecture<a class="headerlink" href="#system-architecture" title="Link to this heading">¶</a></h1>
+<p class="plantuml">
+<a href="_images/plantuml-33df72b17e8807c75b82e56bf988f9745a5d9dbc.png"><img src="_images/plantuml-33df72b17e8807c75b82e56bf988f9745a5d9dbc.png" alt="&#64;startuml
+
+actor Trainee
+actor User
+
+package &quot;Local Resource&quot; {
+    [Electronic Piano] as Piano
+    [Linux Device] as Linux
+}
+package &quot;Cloud Resource&quot; {
+    [Google Drive] as Cloud
+}
+
+Trainee --&gt; Piano : Plays Piano
+Piano --&gt; Linux : Audio Output (via USB or Line-In)
+Linux --&gt; Cloud : Upload Processed Audio
+Linux --&gt; Cloud : Get Processed Audio List
+User  --&gt; Linux : Web Portal Access (via Browser)
+User  --&gt; Cloud : Access Stored Files (direct access)
+&#64;enduml
+" style="width: 783.0px; height: 531.0px"/></a>
+</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Piano Practice Daily</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
