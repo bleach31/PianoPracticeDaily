@@ -2,29 +2,56 @@ import pyudev
 import json
 
 class PianoDetector:
-    def __init__(self, target_device_name="ARIUS"):
+    def __init__(self, target_device_criteria=None):
         """
         Initialize the PianoDetector.
-        :param target_device_name: The name of the USB device to monitor.
+        :param target_device_criteria: A dictionary of attributes and values to match the target device.
         """
-        self.target_device_name = target_device_name
+        self.target_device_criteria = target_device_criteria
 
     def monitor(self):
         """
-        Monitor USB events and detect the target device's connection or disconnection.
+        Monitor USB events asynchronously and detect the target device's connection or disconnection.
         """
         context = pyudev.Context()
         monitor = pyudev.Monitor.from_netlink(context)
-        monitor.filter_by(subsystem='usb')
+        monitor.filter_by(subsystem='usb', device_type='usb_device')
 
-        print(f"Monitoring USB events for device: {self.target_device_name}")
-        for device in iter(monitor.poll, None):
-            if device.action == "add" and self.target_device_name in device.device_path:
-                print("Piano powered ON")
-                self.on_device_connected()
-            elif device.action == "remove" and self.target_device_name in device.device_path:
-                print("Piano powered OFF")
-                self.on_device_disconnected()
+        def handle_event(action, device):
+            """
+            Handle USB events asynchronously.
+            :param action: The action performed (e.g., 'add', 'remove').
+            :param device: The device object.
+            """
+            if self._matches_criteria(device):
+                if action == "add":
+                    print("Piano powered ON")
+                    self.on_device_connected()
+                elif action == "remove":
+                    print("Piano powered OFF")
+                    self.on_device_disconnected()
+
+        observer = pyudev.MonitorObserver(monitor, handle_event)
+        print(f"Monitoring USB events for device matching criteria: {self.target_device_criteria}")
+        observer.start()
+
+        try:
+            while True:
+                pass  # Keep the main thread alive to allow asynchronous monitoring
+        except KeyboardInterrupt:
+            print("Stopping monitor...")
+            observer.stop()
+
+    def _matches_criteria(self, device):
+        """
+        Check if the device matches the target criteria.
+        :param device: The device object.
+        :return: True if the device matches, False otherwise.
+        """
+        for key, value in self.target_device_criteria.items():
+            if device.get(key) != value:
+                return False
+        return True
 
     def on_device_connected(self):
         """
@@ -52,10 +79,10 @@ if __name__ == "__main__":
     try:
         with open("config.json", "r") as config_file:
             config = json.load(config_file)
-        target_device_name = config.get("target_device_name", "ARIUS")
+        target_device_criteria = config.get("target_device_criteria", {})
     except FileNotFoundError:
         print("Configuration file not found. Using default settings.")
-        target_device_name = "ARIUS"
+        target_device_criteria = {}
 
-    detector = CustomPianoDetector(target_device_name=target_device_name)
+    detector = CustomPianoDetector(target_device_criteria=target_device_criteria)
     detector.monitor()
