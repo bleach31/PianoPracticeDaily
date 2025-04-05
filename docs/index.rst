@@ -106,10 +106,8 @@ System Architecture
 
 The following diagram illustrates the system architecture for Piano Practice Daily:
 
-.. uml:: system_architecture
-   :caption: System Architecture Diagram
+.. needuml:: logical_architecture
 
-    @startuml
     actor User
     package "Piano Practice Daily System" {
         component "Piano Detection Module" as PianoDetection
@@ -128,12 +126,9 @@ The following diagram illustrates the system architecture for Piano Practice Dai
     SilenceProcessing --> Storage : Save Processed Audio
     Storage --> WebPortal : Provide Audio Files
     WebPortal --> Notification : Send Email Notifications
-    @enduml
 
-.. uml:: physical_connections
-   :caption: Physical Connections Diagram
+.. needuml:: physical_architrecture
 
-   @startuml
    actor Trainee
    actor User
 
@@ -151,4 +146,3 @@ The following diagram illustrates the system architecture for Piano Practice Dai
    Linux --> Cloud : Get Processed Audio List
    User  --> Linux : Web Portal Access (via Browser)
    User  --> Cloud : Access Stored Files (direct access)
-   @enduml
