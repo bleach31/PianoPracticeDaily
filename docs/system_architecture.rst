@@ -11,8 +11,7 @@ The following diagram illustrates the system architecture for Piano Practice Dai
 
     actor User
     package "Piano Practice Daily System" {
-        component "Piano Detection Module" as PianoDetection
-        component "Audio Recording Module" as AudioRecording
+        component "Audio Device Manager" as AudioDeviceManager
         component "Silence Processing Module" as SilenceProcessing
         component "Storage Module" as Storage
         component "Web Portal" as WebPortal
@@ -22,8 +21,7 @@ The following diagram illustrates the system architecture for Piano Practice Dai
 
     User --> WebPortal : View Logs & Playback
     User --> Streaming : Listen in Real-time
-    PianoDetection --> AudioRecording : Trigger Recording
-    AudioRecording --> SilenceProcessing : Process Audio
+    AudioDeviceManager --> SilenceProcessing : Process Audio
     SilenceProcessing --> Storage : Save Processed Audio
     Storage --> WebPortal : Provide Audio Files
     WebPortal --> Notification : Send Email Notifications
