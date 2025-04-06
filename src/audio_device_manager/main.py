@@ -1,3 +1,4 @@
+from storage.practice_session_manager import PracticeSessionManager
 import pyudev
 import json
 import os
@@ -34,6 +35,8 @@ class AudioDeviceManager:
         self.target_device_criteria = target_device_criteria
         self.target_name = target_name
         self.recording = False
+        self.session_manager = PracticeSessionManager("practice_sessions.json")  # JSONファイルのパス
+
 
     def monitor(self):
         """
@@ -163,6 +166,14 @@ class AudioDeviceManager:
             self.recording_process.send_signal(subprocess.signal.SIGINT)
             self.recording_process.wait()
             print("Recording process stopped.")
+
+            # Save the session to JSON
+            stop_time = datetime.datetime.now()
+            self.session_manager.add_session(
+                start_time=self.start_time,
+                stop_time=stop_time,
+                midi_file_path=self.output_file
+            )
 
 if __name__ == "__main__":
     # Load configuration from external TOML file
