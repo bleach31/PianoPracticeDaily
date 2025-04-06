@@ -54,12 +54,11 @@
 <p id="id2">The following diagram illustrates the system architecture for Piano Practice Daily:</p>
 <h1 id="needuml-system_architecture-0">logical_architecture<a class="headerlink" href="#system-architecture" title="Link to this heading">¶</a></h1>
 <p class="plantuml">
-<a href="_images/plantuml-51c9cfbda7b52b1e728a0ab48e561b4837488e63.png"><img src="_images/plantuml-51c9cfbda7b52b1e728a0ab48e561b4837488e63.png" alt="&#64;startuml
+<a href="_images/plantuml-97ac63f262c0a77bf4d51a36ef126e81e2cc9843.png"><img src="_images/plantuml-97ac63f262c0a77bf4d51a36ef126e81e2cc9843.png" alt="&#64;startuml
 
 actor User
 package &quot;Piano Practice Daily System&quot; {
-    component &quot;Piano Detection Module&quot; as PianoDetection
-    component &quot;Audio Recording Module&quot; as AudioRecording
+    component &quot;Audio Device Manager&quot; as AudioDeviceManager
     component &quot;Silence Processing Module&quot; as SilenceProcessing
     component &quot;Storage Module&quot; as Storage
     component &quot;Web Portal&quot; as WebPortal
@@ -69,13 +68,12 @@ package &quot;Piano Practice Daily System&quot; {
 
 User --&gt; WebPortal : View Logs &amp; Playback
 User --&gt; Streaming : Listen in Real-time
-PianoDetection --&gt; AudioRecording : Trigger Recording
-AudioRecording --&gt; SilenceProcessing : Process Audio
+AudioDeviceManager --&gt; SilenceProcessing : Process Audio
 SilenceProcessing --&gt; Storage : Save Processed Audio
 Storage --&gt; WebPortal : Provide Audio Files
 WebPortal --&gt; Notification : Send Email Notifications
 &#64;enduml
-" style="width: 698.0px; height: 862.0px"/></a>
+" style="width: 686.0px; height: 739.0px"/></a>
 </p>
 <h1 id="needuml-system_architecture-1">physical_architrecture<a class="headerlink" href="#system-architecture" title="Link to this heading">¶</a></h1>
 <p class="plantuml">
