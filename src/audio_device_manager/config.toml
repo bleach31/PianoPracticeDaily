@@ -1,0 +1,12 @@
+# Criteria to match the target USB device (e.g., electronic piano)
+# To find the "PRODUCT" value, use the `lsusb` command and look for your device.
+# Example: If `lsusb` shows "ID 0499:171e", the "PRODUCT" value is "499/171e/100".
+[pyudev_target_device_crieria]
+PRODUCT = "499/171e/100"
+
+
+# The name of the target MIDI device as listed by `arecordmidi -l`
+# Run `arecordmidi -l` and find the "Client name" or "Port name" for your device.
+# Example: If the output shows "28:0    ARIUS MIDI 1", use "ARIUS" as the value.
+[arecordmidi_target_device_crieria]
+port_name = "ARIUS"

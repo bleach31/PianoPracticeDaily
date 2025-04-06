@@ -3,6 +3,11 @@ import json
 import os
 import threading
 import time
+import subprocess
+import re
+import tomllib  # Use tomllib for Python 3.11+; for older versions, use `import toml` instead
+import sys  # Add this import at the top of the file
+import datetime  # Add this import for timestamp generation
 
 class AudioDeviceManager:
     """
@@ -20,12 +25,14 @@ class AudioDeviceManager:
         :id: CMP001
         :links: REQ001, REQ002, REQ003
     """
-    def __init__(self, target_device_criteria=None):
+    def __init__(self, target_device_criteria=None, target_name=None):
         """
         Initialize the AudioDeviceManager.
-        :param target_device_criteria: A dictionary of attributes and values to match the target device.
+        :param target_device_criteria: A list of dictionaries of attributes and values to match the target device.
+        :param target_name: The name of the target MIDI device.
         """
         self.target_device_criteria = target_device_criteria
+        self.target_name = target_name
         self.recording = False
 
     def monitor(self):
@@ -45,7 +52,7 @@ class AudioDeviceManager:
             if self._matches_criteria(device):
                 if action == "add":
                     print("Piano powered ON")
-                    self.on_device_connected()
+                    self.on_device_connected(device)
                 elif action == "remove":
                     print("Piano powered OFF")
                     self.on_device_disconnected()
@@ -63,23 +70,56 @@ class AudioDeviceManager:
 
     def _matches_criteria(self, device):
         """
-        Check if the device matches the target criteria.
+        Check if the device matches any of the target criteria.
         :param device: The device object.
-        :return: True if the device matches, False otherwise.
+        :return: True if the device matches any criteria, False otherwise.
         """
-        for key, value in self.target_device_criteria.items():
-            if device.get(key) != value:
-                return False
-        return True
+        for criteria in self.target_device_criteria:
+            match = all(device.get(key) == value for key, value in criteria.items())
+            if match:
+                return True
+        return False
 
-    def on_device_connected(self):
+    def _get_arecordmidi_port(self, device):
+        """
+        Retrieve the ALSA MIDI port for the matched device using arecordmidi -l.
+        :param device: The device object.
+        :return: The MIDI port string (e.g., '28:0').
+        """
+        try:
+            # Run arecordmidi -l to list available MIDI ports
+            result = subprocess.run(
+                ["arecordmidi", "-l"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
+            if result.returncode != 0:
+                raise RuntimeError(f"Error running arecordmidi -l: {result.stderr.strip()}")
+            # Parse the output to find the port for the target device
+            if not self.target_name:
+                raise ValueError("Target device name is not specified.")
+            for line in result.stdout.splitlines():
+                match = re.match(r"^\s*(\d+:\d+)\s+.*\b" + re.escape(self.target_name) + r"\b.*$", line)
+                if match:
+                    midi_port = match.group(1)
+                    print(f"Debug: Found MIDI port for {self.target_name}: {midi_port}")
+                    return midi_port
+            raise ValueError(f"Target device '{self.target_name}' not found in arecordmidi -l output.")
+        except Exception as e:
+            raise RuntimeError(f"Failed to determine MIDI port: {e}")
+
+    def on_device_connected(self, device):
         """
         Callback for when the device is connected (powered on).
         Start recording and perform custom actions.
         """
-        print("Device connected. Starting recording...")
-        self.start_recording()
-        print("Custom action: Start recording.")
+        print("Device connected. Determining MIDI port...")
+        try:
+            self.midi_port = self._get_arecordmidi_port(device)
+            self.start_recording()
+        except Exception as e:
+            print(f"Error determining MIDI port: {e}")
 
     def on_device_disconnected(self):
         """
@@ -88,43 +128,70 @@ class AudioDeviceManager:
         """
         print("Device disconnected. Stopping recording...")
         self.stop_recording()
-        print("Custom action: Stop recording.")
 
     def start_recording(self):
         """
-        Start the audio recording process.
+        Start the audio recording process using arecordmidi.
         """
-        self.recording = True
-        self.recording_thread = threading.Thread(target=self._record_audio)
-        self.recording_thread.start()
+        print("Recording started with arecordmidi...")
+        try:
+            if not hasattr(self, 'midi_port'):
+                raise ValueError("MIDI port is not set. Cannot start recording.")
+            
+            # Generate a unique filename with timestamp
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_file = f"{timestamp}.mid"
+            print(f"Recording to file: {output_file}")
+            
+            # Start the arecordmidi process
+            self.recording_process = subprocess.Popen(
+                ["arecordmidi", "-p", self.midi_port, output_file],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True  # Ensure output is in text format
+            )
+            print("Recording process started.")
+        except Exception as e:
+            print(f"Error starting recording: {e}")
 
     def stop_recording(self):
         """
         Stop the audio recording process.
         """
-        self.recording = False
-        if hasattr(self, 'recording_thread'):
-            self.recording_thread.join()
-
-    def _record_audio(self):
-        """
-        Simulate audio recording process.
-        Replace this with actual audio recording logic.
-        """
-        print("Recording started...")
-        while self.recording:
-            time.sleep(1)  # Simulate recording
-        print("Recording stopped.")
+        if hasattr(self, 'recording_process') and self.recording_process.poll() is None:
+            # Send SIGINT to gracefully stop the arecordmidi process
+            self.recording_process.send_signal(subprocess.signal.SIGINT)
+            self.recording_process.wait()
+            print("Recording process stopped.")
 
 if __name__ == "__main__":
-    # Load configuration from external JSON file
+    # Load configuration from external TOML file
     try:
-        with open("config.json", "r") as config_file:
-            config = json.load(config_file)
-        target_device_criteria = config.get("target_device_criteria", {})
+        with open("config.toml", "rb") as config_file:  # Use "rb" mode for tomllib
+            config = tomllib.load(config_file)  # Parse the TOML configuration
+
+        # Load pyudev target device criteria
+        target_device_criteria = config.get("pyudev_target_device_crieria", {})
+        if not isinstance(target_device_criteria, dict):
+            print("Error: 'pyudev_target_device_crieria' must be a dictionary.")
+            sys.exit(1)
+
+        # Wrap the single dictionary into a list for consistency
+        target_device_criteria = [target_device_criteria]
+
+        # Load arecordmidi target device criteria
+        arecordmidi_criteria = config.get("arecordmidi_target_device_crieria", {})
+        target_name = arecordmidi_criteria.get("port_name")
+        if not target_name:
+            print("Error: 'port_name' is missing in 'arecordmidi_target_device_crieria'.")
+            sys.exit(1)
+
     except FileNotFoundError:
         print("Configuration file not found. Using default settings.")
-        target_device_criteria = {}
+        sys.exit(1)
+    except tomllib.TOMLDecodeError as e:
+        print(f"Error decoding TOML configuration: {e}")
+        sys.exit(1)
 
-    manager = AudioDeviceManager(target_device_criteria=target_device_criteria)
+    manager = AudioDeviceManager(target_device_criteria=target_device_criteria, target_name=target_name)
     manager.monitor()
