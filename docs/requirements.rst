@@ -6,17 +6,17 @@ Requirements
 .. req:: Detect Piano Start
     :id: REQ001
 
-    The system shall detect when the electronic piano is turned on.
+    The system shall detect when the electronic piano is turned on and automatically start recording audio.
 
 .. req:: Detect Piano Stop
     :id: REQ002
 
-    The system shall detect when the electronic piano is turned off.
+    The system shall detect when the electronic piano is turned off and automatically stop recording audio.
 
 .. req:: Record Audio
     :id: REQ003
 
-    The system shall record audio during the practice session.
+    The system shall record audio during the practice session, starting when the piano is turned on and stopping when the piano is turned off.
 
 .. req:: Store Audio on Storage
     :id: REQ004
@@ -33,7 +33,7 @@ Requirements
 .. req:: Log Practice Time
     :id: REQ006
 
-    The system shall log the session start time, stop time, and total duration.
+    The system shall log the session start time, stop time, and total duration, triggered by the piano's power state changes.
 
 .. req:: Send Email Notification
     :id: REQ007

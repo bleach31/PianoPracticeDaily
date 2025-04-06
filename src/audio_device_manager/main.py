@@ -1,13 +1,17 @@
 import pyudev
 import json
+import os
+import threading
+import time
 
-class PianoDetector:
+class AudioDeviceManager:
     def __init__(self, target_device_criteria=None):
         """
-        Initialize the PianoDetector.
+        Initialize the AudioDeviceManager.
         :param target_device_criteria: A dictionary of attributes and values to match the target device.
         """
         self.target_device_criteria = target_device_criteria
+        self.recording = False
 
     def monitor(self):
         """
@@ -56,23 +60,46 @@ class PianoDetector:
     def on_device_connected(self):
         """
         Callback for when the device is connected (powered on).
-        Override this method to implement custom behavior.
+        Start recording and perform custom actions.
         """
-        print("Device connected. Implement custom behavior here.")
+        print("Device connected. Starting recording...")
+        self.start_recording()
+        print("Custom action: Start recording.")
 
     def on_device_disconnected(self):
         """
         Callback for when the device is disconnected (powered off).
-        Override this method to implement custom behavior.
+        Stop recording and perform custom actions.
         """
-        print("Device disconnected. Implement custom behavior here.")
-
-class CustomPianoDetector(PianoDetector):
-    def on_device_connected(self):
-        print("Custom action: Start recording.")
-
-    def on_device_disconnected(self):
+        print("Device disconnected. Stopping recording...")
+        self.stop_recording()
         print("Custom action: Stop recording.")
+
+    def start_recording(self):
+        """
+        Start the audio recording process.
+        """
+        self.recording = True
+        self.recording_thread = threading.Thread(target=self._record_audio)
+        self.recording_thread.start()
+
+    def stop_recording(self):
+        """
+        Stop the audio recording process.
+        """
+        self.recording = False
+        if hasattr(self, 'recording_thread'):
+            self.recording_thread.join()
+
+    def _record_audio(self):
+        """
+        Simulate audio recording process.
+        Replace this with actual audio recording logic.
+        """
+        print("Recording started...")
+        while self.recording:
+            time.sleep(1)  # Simulate recording
+        print("Recording stopped.")
 
 if __name__ == "__main__":
     # Load configuration from external JSON file
@@ -84,5 +111,5 @@ if __name__ == "__main__":
         print("Configuration file not found. Using default settings.")
         target_device_criteria = {}
 
-    detector = CustomPianoDetector(target_device_criteria=target_device_criteria)
-    detector.monitor()
+    manager = AudioDeviceManager(target_device_criteria=target_device_criteria)
+    manager.monitor()
