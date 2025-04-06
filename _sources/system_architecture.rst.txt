@@ -40,7 +40,7 @@ The following diagram illustrates the system architecture for Piano Practice Dai
    }
 
    Trainee --> Piano : Plays Piano
-   Piano --> Linux : Audio Output (via USB or Line-In)
+   Piano --> Linux : Audio Output (via USB)
    Linux --> Cloud : Upload Processed Audio
    Linux --> Cloud : Get Processed Audio List
    User  --> Linux : Web Portal Access (via Browser)
