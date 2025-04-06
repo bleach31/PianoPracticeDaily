@@ -5,6 +5,21 @@ import threading
 import time
 
 class AudioDeviceManager:
+    """
+    The AudioDeviceManager class is responsible for managing the interaction with an audio device,
+    such as detecting when the device (e.g., an electronic piano) is connected or disconnected,
+    and controlling the audio recording process accordingly.
+
+    Key Responsibilities:
+    - Detect the connection and disconnection of the target audio device.
+    - Automatically start recording when the device is connected.
+    - Automatically stop recording when the device is disconnected.
+    - Provide a framework for handling custom actions during device connection or disconnection.
+
+    .. spec:: Audio Device Manager
+        :id: CMP001
+        :links: REQ001, REQ002, REQ003
+    """
     def __init__(self, target_device_criteria=None):
         """
         Initialize the AudioDeviceManager.
