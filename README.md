@@ -4,7 +4,7 @@ PianoPracticeDailyは、電子ピアノの練習セッションを記録、処�
 
 ## ドキュメント
 
-詳細な仕様やアーキテクチャについては、[ドキュメントサイト](https://bleach31.github.io/PianoPracticeDaily/)をご覧ください。
+詳細な仕様やアーキテクチャについては、[ドキュメントサイト](https://bleach31.github.io/PianoPracticeDiary/)をご覧ください。
 
 ## 主な機能
 
