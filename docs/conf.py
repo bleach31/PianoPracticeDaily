@@ -1,4 +1,4 @@
-project = "Piano Practice Daily"
+project = "Piano Practice Diary"
 extensions = ["sphinx_needs", 'sphinxcontrib.plantuml']
 master_doc = 'index'
 

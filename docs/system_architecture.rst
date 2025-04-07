@@ -5,12 +5,12 @@ System Architecture
 
 .. _system-architecture:
 
-The following diagram illustrates the system architecture for Piano Practice Daily:
+The following diagram illustrates the system architecture for Piano Practice diary:
 
 .. needuml:: logical_architecture
 
     actor User
-    package "Piano Practice Daily System" {
+    package "Piano Practice Diary System" {
         component "Audio Device Manager" as AudioDeviceManager
         component "Silence Processing Module" as SilenceProcessing
         component "Storage Module" as Storage

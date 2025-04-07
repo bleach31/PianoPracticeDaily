@@ -26,7 +26,7 @@ Specifications
     :id: CMP004
     :links: REQ008
 
-    The Web Portal provides a user interface for reviewing daily practice logs and playing back past recordings. 
+    The Web Portal provides a user interface for reviewing diary practice logs and playing back past recordings. 
     It also displays metadata such as session date, duration, and notes.
 
 .. spec:: Notification Module

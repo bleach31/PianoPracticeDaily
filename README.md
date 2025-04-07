@@ -1,4 +1,4 @@
-# PianoPracticeDaily
+# PianoPracticeDiary
 
 PianoPracticeDailyは、電子ピアノの練習セッションを記録、処理、管理するためのシステムです。
 
