@@ -1,4 +1,4 @@
-Piano Practice Daily
+Piano Practice Diary
 ==========================
 
 .. toctree::
