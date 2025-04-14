@@ -6,7 +6,7 @@ import threading
 import time
 import subprocess
 import re
-import tomllib  # Use tomllib for Python 3.11+; for older versions, use `import toml` instead
+import yaml  # Import YAML for configuration parsing
 import sys  # Add this import at the top of the file
 import datetime  # Add this import for timestamp generation
 
@@ -26,16 +26,17 @@ class AudioDeviceManager:
         :id: CMP001
         :links: REQ001, REQ002, REQ003
     """
-    def __init__(self, target_device_criteria=None, target_name=None):
+    def __init__(self, target_device_criteria=None, target_name=None, session_file_path="practice_sessions.json"):
         """
         Initialize the AudioDeviceManager.
         :param target_device_criteria: A list of dictionaries of attributes and values to match the target device.
         :param target_name: The name of the target MIDI device.
+        :param session_file_path: Path to the session file.
         """
         self.target_device_criteria = target_device_criteria
         self.target_name = target_name
         self.recording = False
-        self.session_manager = PracticeSessionManager("practice_sessions.json")  # JSONファイルのパス
+        self.session_manager = PracticeSessionManager(session_file_path)  # JSONファイルのパス
 
 
     def monitor(self):
@@ -176,10 +177,10 @@ class AudioDeviceManager:
             )
 
 if __name__ == "__main__":
-    # Load configuration from external TOML file
+    # Load configuration from external YAML file
     try:
-        with open("config.toml", "rb") as config_file:  # Use "rb" mode for tomllib
-            config = tomllib.load(config_file)  # Parse the TOML configuration
+        with open("config.yaml", "r") as config_file:
+            config = yaml.safe_load(config_file)  # Parse the YAML configuration
 
         # Load pyudev target device criteria
         target_device_criteria = config.get("pyudev_target_device_crieria", {})
@@ -197,12 +198,15 @@ if __name__ == "__main__":
             print("Error: 'port_name' is missing in 'arecordmidi_target_device_crieria'.")
             sys.exit(1)
 
+        # Load session file path from config.yaml
+        session_file_path = config.get("session_file_path", "practice_sessions.json")
+
     except FileNotFoundError:
         print("Configuration file not found. Using default settings.")
         sys.exit(1)
-    except tomllib.TOMLDecodeError as e:
-        print(f"Error decoding TOML configuration: {e}")
+    except yaml.YAMLError as e:
+        print(f"Error decoding YAML configuration: {e}")
         sys.exit(1)
 
-    manager = AudioDeviceManager(target_device_criteria=target_device_criteria, target_name=target_name)
+    manager = AudioDeviceManager(target_device_criteria=target_device_criteria, target_name=target_name, session_file_path=session_file_path)
     manager.monitor()
