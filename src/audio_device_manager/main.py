@@ -1,4 +1,4 @@
-from storage.practice_session_manager import PracticeSessionManager
+from .storage.practice_session_manager import PracticeSessionManager
 import pyudev
 import json
 import os
