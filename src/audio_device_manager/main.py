@@ -138,15 +138,18 @@ class AudioDeviceManager:
         try:
             if not hasattr(self, 'midi_port'):
                 raise ValueError("MIDI port is not set. Cannot start recording.")
-            
+
+            # Initialize start_time
+            self.start_time = datetime.datetime.now()
+
             # Generate a unique filename with timestamp
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_file = f"{timestamp}.mid"
-            print(f"Recording to file: {output_file}")
-            
+            timestamp = self.start_time.strftime("%Y%m%d_%H%M%S")
+            self.output_file = f"{timestamp}.mid"
+            print(f"Recording to file: {self.output_file}")
+
             # Start the arecordmidi process
             self.recording_process = subprocess.Popen(
-                ["arecordmidi", "-p", self.midi_port, output_file],
+                ["arecordmidi", "-p", self.midi_port, self.output_file],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True  # Ensure output is in text format
@@ -167,11 +170,15 @@ class AudioDeviceManager:
 
             # Save the session to JSON
             stop_time = datetime.datetime.now()
-            self.session_manager.add_session(
-                start_time=self.start_time,
-                stop_time=stop_time,
-                midi_file_path=self.output_file
-            )
+            try:
+                self.session_manager.add_session(
+                    start_time=self.start_time,
+                    stop_time=stop_time,
+                    midi_file_path=self.output_file
+                )
+                print("Session information saved successfully.")
+            except Exception as e:
+                print(f"Error saving session information: {e}")
 
 if __name__ == "__main__":
     # Load configuration from external YAML file
