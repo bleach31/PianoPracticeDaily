@@ -42,8 +42,21 @@ class AudioDeviceManager:
     def monitor(self):
         """
         Monitor USB events asynchronously and detect the target device's connection or disconnection.
+        Also checks for already connected devices at the start.
         """
         context = pyudev.Context()
+
+        # Check if the device is already connected
+        for device in context.list_devices(subsystem='usb', device_type='usb_device'):
+            if self._matches_criteria(device):
+                print("Device already connected. Determining MIDI port...")
+                try:
+                    self.midi_port = self._get_arecordmidi_port()
+                    self.start_recording()
+                except Exception as e:
+                    print(f"Error determining MIDI port: {e}")
+                return
+
         monitor = pyudev.Monitor.from_netlink(context)
         monitor.filter_by(subsystem='usb', device_type='usb_device')
 
@@ -55,11 +68,15 @@ class AudioDeviceManager:
             """
             if self._matches_criteria(device):
                 if action == "add":
-                    print("Piano powered ON")
-                    self.on_device_connected(device)
+                    print("Device connected. Determining MIDI port...")
+                    try:
+                        self.midi_port = self._get_arecordmidi_port()
+                        self.start_recording()
+                    except Exception as e:
+                        print(f"Error determining MIDI port: {e}")
                 elif action == "remove":
-                    print("Piano powered OFF")
-                    self.on_device_disconnected()
+                    print("Device disconnected. Stopping recording...")
+                    self.stop_recording()
 
         observer = pyudev.MonitorObserver(monitor, handle_event)
         print(f"Monitoring USB events for device matching criteria: {self.target_device_criteria}")
@@ -112,26 +129,6 @@ class AudioDeviceManager:
             raise ValueError(f"Target device '{self.target_name}' not found in arecordmidi -l output.")
         except Exception as e:
             raise RuntimeError(f"Failed to determine MIDI port: {e}")
-
-    def on_device_connected(self, device):
-        """
-        Callback for when the device is connected (powered on).
-        Start recording and perform custom actions.
-        """
-        print("Device connected. Determining MIDI port...")
-        try:
-            self.midi_port = self._get_arecordmidi_port(device)
-            self.start_recording()
-        except Exception as e:
-            print(f"Error determining MIDI port: {e}")
-
-    def on_device_disconnected(self):
-        """
-        Callback for when the device is disconnected (powered off).
-        Stop recording and perform custom actions.
-        """
-        print("Device disconnected. Stopping recording...")
-        self.stop_recording()
 
     def start_recording(self):
         """
