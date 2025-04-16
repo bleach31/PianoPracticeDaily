@@ -101,34 +101,34 @@ class AudioDeviceManager:
                 return True
         return False
 
-    def _get_arecordmidi_port(self, device):
+    def _get_arecordmidi_port(self):
         """
-        Retrieve the ALSA MIDI port for the matched device using arecordmidi -l.
-        :param device: The device object.
-        :return: The MIDI port string (e.g., '28:0').
+        Retrieve the ALSA MIDI port for the matched device using arecordmidi -l with retry logic.
         """
-        try:
-            # Run arecordmidi -l to list available MIDI ports
-            result = subprocess.run(
-                ["arecordmidi", "-l"],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True
-            )
-            if result.returncode != 0:
-                raise RuntimeError(f"Error running arecordmidi -l: {result.stderr.strip()}")
-            # Parse the output to find the port for the target device
-            if not self.target_name:
-                raise ValueError("Target device name is not specified.")
-            for line in result.stdout.splitlines():
-                match = re.match(r"^\s*(\d+:\d+)\s+.*\b" + re.escape(self.target_name) + r"\b.*$", line)
-                if match:
-                    midi_port = match.group(1)
-                    print(f"Debug: Found MIDI port for {self.target_name}: {midi_port}")
-                    return midi_port
-            raise ValueError(f"Target device '{self.target_name}' not found in arecordmidi -l output.")
-        except Exception as e:
-            raise RuntimeError(f"Failed to determine MIDI port: {e}")
+        retries = 3
+        delay = 2  # seconds
+        for attempt in range(retries):
+            try:
+                result = subprocess.run(
+                    ["arecordmidi", "-l"],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True
+                )
+                if result.returncode != 0:
+                    raise RuntimeError(f"Error running arecordmidi -l: {result.stderr.strip()}")
+
+                for line in result.stdout.splitlines():
+                    match = re.match(r"^\s*(\d+:\d+)\s+.*\b" + re.escape(self.target_name) + r"\b.*$", line)
+                    if match:
+                        return match.group(1)
+                raise ValueError(f"Target device '{self.target_name}' not found in arecordmidi -l output.")
+            except Exception as e:
+                print(f"Attempt {attempt + 1} failed: {e}")
+                if attempt < retries - 1:
+                    time.sleep(delay)
+                else:
+                    raise
 
     def start_recording(self):
         """
