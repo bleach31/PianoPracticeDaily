@@ -1,0 +1,24 @@
+# How to use the systemd service template
+# 1. Copy this template to `/etc/systemd/system/` and rename it to `piano_practice.service`.
+# 2. Replace `your_username` and `your_groupname` with the appropriate user and group.
+# 3. Update the paths in `ExecStart` and `WorkingDirectory` if necessary.
+# 4. Reload systemd with `sudo systemctl daemon-reload`.
+# 5. Enable the service with `sudo systemctl enable piano_practice.service`.
+# 6. Start the service with `sudo systemctl start piano_practice.service`.
+# 7. Check the status with `sudo systemctl status piano_practice.service`.
+# 8. View logs with `journalctl -u piano_practice.service`.
+
+[Unit]
+Description=Piano Practice Daily Service
+After=network.target
+
+[Service]
+ExecStart=/home/user/venv/bin/python /home/user/PianoPracticeDaily/src/audio_device_manager/main.py
+WorkingDirectory=/home/user/PianoPracticeDaily
+Restart=always
+User=your_username
+Group=your_groupname
+Environment="PYTHONUNBUFFERED=1"
+
+[Install]
+WantedBy=multi-user.target
