@@ -1,7 +1,7 @@
-.. _specifications:
-
 Specifications
 ===================
+
+.. _specifications:
 
 .. spec:: Audio Device Manager
     :id: CMP001
@@ -41,3 +41,9 @@ Specifications
 
     The Streaming Module provides real-time audio streaming during the piano session. 
     This module is optional and may not be implemented in all deployments.
+
+.. spec:: Enhanced MIDI Device Handling
+    :id: CMP007
+    :links: REQ011, REQ012, REQ013
+
+    The Audio Device Manager shall handle a single MIDI device at a time, start recording immediately if the device is active on script startup, and use retry logic with wait time to ensure reliable detection of MIDI devices.

@@ -1,4 +1,4 @@
-from .storage.practice_session_manager import PracticeSessionManager
+from storage import session_manager
 import pyudev
 import json
 import os
@@ -36,14 +36,27 @@ class AudioDeviceManager:
         self.target_device_criteria = target_device_criteria
         self.target_name = target_name
         self.recording = False
-        self.session_manager = PracticeSessionManager(session_file_path)  # JSONファイルのパス
+        self.session_manager = session_manager.PracticeSessionManager(session_file_path)  # JSONファイルのパス
 
 
     def monitor(self):
         """
         Monitor USB events asynchronously and detect the target device's connection or disconnection.
+        Also checks for already connected devices at the start.
         """
         context = pyudev.Context()
+
+        # Check if the device is already connected
+        for device in context.list_devices(subsystem='usb', device_type='usb_device'):
+            if self._matches_criteria(device):
+                print("Device already connected. Determining MIDI port...")
+                try:
+                    self.midi_port = self._get_arecordmidi_port()
+                    self.start_recording()
+                except Exception as e:
+                    print(f"Error determining MIDI port: {e}")
+                return
+
         monitor = pyudev.Monitor.from_netlink(context)
         monitor.filter_by(subsystem='usb', device_type='usb_device')
 
@@ -55,11 +68,15 @@ class AudioDeviceManager:
             """
             if self._matches_criteria(device):
                 if action == "add":
-                    print("Piano powered ON")
-                    self.on_device_connected(device)
+                    print("Device connected. Determining MIDI port...")
+                    try:
+                        self.midi_port = self._get_arecordmidi_port()
+                        self.start_recording()
+                    except Exception as e:
+                        print(f"Error determining MIDI port: {e}")
                 elif action == "remove":
-                    print("Piano powered OFF")
-                    self.on_device_disconnected()
+                    print("Device disconnected. Stopping recording...")
+                    self.stop_recording()
 
         observer = pyudev.MonitorObserver(monitor, handle_event)
         print(f"Monitoring USB events for device matching criteria: {self.target_device_criteria}")
@@ -84,54 +101,34 @@ class AudioDeviceManager:
                 return True
         return False
 
-    def _get_arecordmidi_port(self, device):
+    def _get_arecordmidi_port(self):
         """
-        Retrieve the ALSA MIDI port for the matched device using arecordmidi -l.
-        :param device: The device object.
-        :return: The MIDI port string (e.g., '28:0').
+        Retrieve the ALSA MIDI port for the matched device using arecordmidi -l with retry logic.
         """
-        try:
-            # Run arecordmidi -l to list available MIDI ports
-            result = subprocess.run(
-                ["arecordmidi", "-l"],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True
-            )
-            if result.returncode != 0:
-                raise RuntimeError(f"Error running arecordmidi -l: {result.stderr.strip()}")
-            # Parse the output to find the port for the target device
-            if not self.target_name:
-                raise ValueError("Target device name is not specified.")
-            for line in result.stdout.splitlines():
-                match = re.match(r"^\s*(\d+:\d+)\s+.*\b" + re.escape(self.target_name) + r"\b.*$", line)
-                if match:
-                    midi_port = match.group(1)
-                    print(f"Debug: Found MIDI port for {self.target_name}: {midi_port}")
-                    return midi_port
-            raise ValueError(f"Target device '{self.target_name}' not found in arecordmidi -l output.")
-        except Exception as e:
-            raise RuntimeError(f"Failed to determine MIDI port: {e}")
+        retries = 3
+        delay = 2  # seconds
+        for attempt in range(retries):
+            try:
+                result = subprocess.run(
+                    ["arecordmidi", "-l"],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True
+                )
+                if result.returncode != 0:
+                    raise RuntimeError(f"Error running arecordmidi -l: {result.stderr.strip()}")
 
-    def on_device_connected(self, device):
-        """
-        Callback for when the device is connected (powered on).
-        Start recording and perform custom actions.
-        """
-        print("Device connected. Determining MIDI port...")
-        try:
-            self.midi_port = self._get_arecordmidi_port(device)
-            self.start_recording()
-        except Exception as e:
-            print(f"Error determining MIDI port: {e}")
-
-    def on_device_disconnected(self):
-        """
-        Callback for when the device is disconnected (powered off).
-        Stop recording and perform custom actions.
-        """
-        print("Device disconnected. Stopping recording...")
-        self.stop_recording()
+                for line in result.stdout.splitlines():
+                    match = re.match(r"^\s*(\d+:\d+)\s+.*\b" + re.escape(self.target_name) + r"\b.*$", line)
+                    if match:
+                        return match.group(1)
+                raise ValueError(f"Target device '{self.target_name}' not found in arecordmidi -l output.")
+            except Exception as e:
+                print(f"Attempt {attempt + 1} failed: {e}")
+                if attempt < retries - 1:
+                    time.sleep(delay)
+                else:
+                    raise
 
     def start_recording(self):
         """
@@ -141,15 +138,18 @@ class AudioDeviceManager:
         try:
             if not hasattr(self, 'midi_port'):
                 raise ValueError("MIDI port is not set. Cannot start recording.")
-            
+
+            # Initialize start_time
+            self.start_time = datetime.datetime.now()
+
             # Generate a unique filename with timestamp
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_file = f"{timestamp}.mid"
-            print(f"Recording to file: {output_file}")
-            
+            timestamp = self.start_time.strftime("%Y%m%d_%H%M%S")
+            self.output_file = f"{timestamp}.mid"
+            print(f"Recording to file: {self.output_file}")
+
             # Start the arecordmidi process
             self.recording_process = subprocess.Popen(
-                ["arecordmidi", "-p", self.midi_port, output_file],
+                ["arecordmidi", "-p", self.midi_port, self.output_file],
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True  # Ensure output is in text format
@@ -170,11 +170,15 @@ class AudioDeviceManager:
 
             # Save the session to JSON
             stop_time = datetime.datetime.now()
-            self.session_manager.add_session(
-                start_time=self.start_time,
-                stop_time=stop_time,
-                midi_file_path=self.output_file
-            )
+            try:
+                self.session_manager.add_session(
+                    start_time=self.start_time,
+                    stop_time=stop_time,
+                    midi_file_path=self.output_file
+                )
+                print("Session information saved successfully.")
+            except Exception as e:
+                print(f"Error saving session information: {e}")
 
 if __name__ == "__main__":
     # Load configuration from external YAML file
