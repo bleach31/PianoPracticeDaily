@@ -1,4 +1,4 @@
-from .storage.practice_session_manager import PracticeSessionManager
+from storage import session_manager
 import pyudev
 import json
 import os
@@ -36,7 +36,7 @@ class AudioDeviceManager:
         self.target_device_criteria = target_device_criteria
         self.target_name = target_name
         self.recording = False
-        self.session_manager = PracticeSessionManager(session_file_path)  # JSONファイルのパス
+        self.session_manager = session_manager.PracticeSessionManager(session_file_path)  # JSONファイルのパス
 
 
     def monitor(self):
