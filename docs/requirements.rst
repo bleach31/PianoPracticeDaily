@@ -1,8 +1,6 @@
 Requirements
 ===================
 
-.. _requirements:
-
 .. req:: Detect Piano Start
     :id: REQ001
 

@@ -1,8 +1,6 @@
 Specifications
 ===================
 
-.. _specifications:
-
 .. spec:: Audio Device Manager
     :id: CMP001
     :links: REQ001, REQ002, REQ003
