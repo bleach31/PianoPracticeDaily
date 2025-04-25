@@ -10,7 +10,13 @@
         "vscode": {
             "extensions": [
                 "ms-python.python",
-                "github.vscode-github-actions"
+                "github.vscode-github-actions",
+                "lextudio.iis",
+                "lextudio.restructuredtext",
+                "lextudio.restructuredtext-pack",
+                "swyddfa.esbonio@prerelease",
+                "trond-snekvik.simple-rst",
+                "useblocks.ubcod"
             ]
         }
     }

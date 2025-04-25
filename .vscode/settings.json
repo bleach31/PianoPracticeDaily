@@ -1,11 +1,3 @@
 {
-    "extensions": [
-      "ms-python.python",
-      "lextudio.iis",
-      "lextudio.restructuredtext",
-      "lextudio.restructuredtext-pack",
-      "swyddfa.esbonio@prerelease",
-      "trond-snekvik.simple-rst",
-      "useblocks.ubcod"
-    ]
-  }
+    "git.autofetch": true
+}
