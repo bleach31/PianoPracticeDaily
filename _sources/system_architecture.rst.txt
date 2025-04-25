@@ -1,9 +1,5 @@
-.. _system_architecture:
-
 System Architecture
 ===================
-
-.. _system-architecture:
 
 The following diagram illustrates the system architecture for Piano Practice diary:
 

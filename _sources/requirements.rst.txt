@@ -1,5 +1,3 @@
-.. _requirements:
-
 Requirements
 ===================
 
@@ -58,3 +56,18 @@ Requirements
     :id: REQ010
 
     Silence is defined as a continuous period of no audio for more than a configurable number of seconds (e.g., 5 seconds).
+
+.. req:: Single MIDI Device Detection
+    :id: REQ011
+
+    The system shall detect only one MIDI device at a time and proceed sequentially through detection, recording, and termination.
+
+.. req:: Immediate Recording on Startup
+    :id: REQ012
+
+    The system shall immediately start recording if a MIDI device is already active when the script starts.
+
+.. req:: Reliable MIDI Device Detection
+    :id: REQ013
+
+    The system shall reliably detect MIDI devices even in cases where timing issues may occur.
