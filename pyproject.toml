@@ -1,0 +1,5 @@
+[tool.esbonio.sphinx]
+buildCommand = [
+  "sphinx-build", "-b", "html", "docs", "docs/_build"
+]
+pythonCommand = ["/usr/local/bin/python3"]
